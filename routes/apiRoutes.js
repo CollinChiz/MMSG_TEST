@@ -4,7 +4,6 @@ var parseString = require("xml2js").parseString;
 module.exports = function(app) {
 
     app.get("/", function(req, res) {
-        console.log(res);
         fetchData()
         .then(function(data) {
             res.json(data);
@@ -15,24 +14,32 @@ module.exports = function(app) {
     app.post("/", function(req, res) {
         fetchData()
         .then(function(data) {
-            var conversionParams = {
-                base_currency: "",
-                base_amount: "",
-                target_currency: ""
-            }
-            var userData = req.body;
-            
-            for(i=0; i<data; i++) {
-                var currentCurrency = data[i];
-                if(currentCurrency.currency === userData.base_currency){
-                    conversionParams.base_currency = currentCurrency.currency;
-                    conversionParams.base_amount = userData.base_amount;
-                    conversionParams.target_currency = userData.target_currency;
+
+                var userData = req.query;
+
+                var target_amount = "";
+                var base_currency = "";
+                var base_currencyRate = "";
+                var base_amount = "";
+                        
+            for(i=0; i<data.data.length; i++) {
+                var currentCurrency = data.data[i];
+                if(currentCurrency.currency === userData.currency){
+                    base_currencyRate = currentCurrency.rate;
+                    base_amount = userData.base_amount;
+                    base_currency = base_amount / base_currencyRate;
+                    
                 } else{
-                    alert("Currency Not Found");
+                    // console.log("not found");
+                }
+                if(currentCurrency.currency === userData.target_currency){
+                    var targetRate = currentCurrency.rate;
+                    target_amount = base_currency * targetRate;
                 }
             };
-            console.log(conversionParams);
+            res.json(target_amount)
+
+
 
 
         })
