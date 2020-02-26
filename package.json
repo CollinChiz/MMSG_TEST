@@ -1,0 +1,27 @@
+{
+  "name": "mmsg_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "eyes": "^0.1.8",
+    "express": "^4.17.1",
+    "xml2js": "^0.4.23"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CollinChiz/MMSG_TEST.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CollinChiz/MMSG_TEST/issues"
+  },
+  "homepage": "https://github.com/CollinChiz/MMSG_TEST#readme"
+}
