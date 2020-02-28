@@ -1,11 +1,16 @@
 var express = require("express");
-
+var cors = require("cors");
 var app = express();
 
 var PORT = process.env.PORT || 8080;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+var corsOptions = {
+    origin: "http://localhost:3000/"
+}
+app.use(cors());
 
 require("./routes/apiRoutes")(app);
 

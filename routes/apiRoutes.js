@@ -21,6 +21,8 @@ module.exports = function(app) {
                 var base_currency = "";
                 var base_currencyRate = "";
                 var base_amount = "";
+                var target_currency = "";
+                var conversionObject = {};
                         
             for(i=0; i<data.data.length; i++) {
                 var currentCurrency = data.data[i];
@@ -35,13 +37,14 @@ module.exports = function(app) {
                 if(currentCurrency.currency === userData.target_currency){
                     var targetRate = currentCurrency.rate;
                     target_amount = base_currency * targetRate;
+                    target_currency = userData.target_currency;
+                    conversionObject = {
+                        currency: target_currency,
+                        amount: target_amount
+                    }
                 }
             };
-            res.json(target_amount)
-
-
-
-
+            res.json(conversionObject)
         })
     })
 
