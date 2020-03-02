@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
-require("./routes/apiRoutes")(app);
+require("./app")(app);
 
 app.listen(PORT, function() {
     console.log("App listening on PORT: " + PORT);
